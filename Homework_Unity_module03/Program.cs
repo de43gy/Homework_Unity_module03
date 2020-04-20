@@ -73,7 +73,7 @@ namespace Homework_Unity_module03
             Console.WriteLine("Правила игры:");
             Console.ForegroundColor = ConsoleColor.Gray;
             Console.WriteLine("Игра загадывает число и выводит его на экран.\n" +
-                "Вам нужно по череди вводить числа, которые будут вычитаться из него.\n" +
+                "Вам нужно по очереди вводить числа, которые будут вычитаться из него.\n" +
                 "Выигрывает тот, кто первый дойдет до 0\n");
             #endregion
 
