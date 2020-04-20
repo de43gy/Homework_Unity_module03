@@ -60,7 +60,6 @@ namespace Homework_Unity_module03
 
 
 
-            Console.WriteLine("Hello World!");
         }
     }
 }
