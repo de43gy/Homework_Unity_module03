@@ -52,6 +52,14 @@ namespace Homework_Unity_module03
             // т е игрок должен играть с компьютером
             #endregion
 
+            string player1, player2; // имена игроков 1, 2, 3 и 4
+            int gameNumber; // случайное число
+            byte userTry; // число, введеное одним из игроков, может принимать значения 1, 2, 3 или 4, вычитается из gamenumber
+
+
+
+
+
             Console.WriteLine("Hello World!");
         }
     }
