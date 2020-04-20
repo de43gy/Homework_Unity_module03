@@ -57,6 +57,8 @@ namespace Homework_Unity_module03
             string[] playersNames;
             // Количество игроков - задается в начале игры
             int numberOfPlayers;
+            // Имя победившего для вывода в конце игры
+            string winner = "";
             // Уровень сложности - меняется в начале игры
             int difficultyLevel;
             // Генерация псевдослучайного значения
@@ -73,10 +75,12 @@ namespace Homework_Unity_module03
             int minUserTry = 1;
             // Максимальное значение userTry, изменяется при выборе уровня сложности
             int maxUserTry = 3;
-            // Статус игры, для выхода из цикла при выигрыше одного из участников
-            bool gameStatus = true;
-            // Ходов с начала игры
-            int turnsNumber = 0;
+            // Статус всей игры, для выхода из цикла при выигрыше одного из участников
+            bool endGameStatus = true;
+            // Статус текущей игры, текущая игра заканчивается после достижения нуля
+            bool newGameStatus = true;
+            // Раундов с начала игры
+            int raundsNumber = 0;
             #endregion
 
             #region Условия игры
@@ -137,49 +141,72 @@ namespace Homework_Unity_module03
             }
 
             //создание случайного числа
-            gameNumber = randomize.Next(minGameNumber, maxGameNumber);
+            gameNumber = randomize.Next(minGameNumber, maxGameNumber * difficultyLevel);
             #endregion
 
             #region Цикл игры
             Console.Clear();
 
-            while (gameStatus)
+            while (endGameStatus)
             {
-                //Ходы игроков
-                for (int i = 0; i < numberOfPlayers; i++) 
+                while (newGameStatus)
                 {
-                    //Вывод информации о ходе, игровом числе и статистика
-                    Console.ForegroundColor = ConsoleColor.Blue;
-                    Console.WriteLine("Ходов с начала игры - " + turnsNumber);
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Сейчас загаданное число = " + gameNumber + "\n");
-                    Console.ForegroundColor = ConsoleColor.Gray;
-                    Console.WriteLine("Ход игрока " + playersNames[i]);
-                    Console.WriteLine("Введите число, которое хотите вычесть");
-                    Console.WriteLine("Оно должно быть в диапазоне от {0} до {1}", minUserTry, maxUserTry + difficultyLevel);
-                    //Считываем ход игрока и проверяем его на вхождение в диапазон
-                    userTry = int.Parse(Console.ReadLine());
-                    while ((userTry < minUserTry) || (userTry > (maxUserTry + difficultyLevel)))
+                    //Ходы игроков
+                    for (int i = 0; i < numberOfPlayers; i++)
                     {
-                        Console.WriteLine("Число не входит в указанный диапазон\n" +
-                            "попробуйте еще раз");
-                        userTry = int.Parse(Console.ReadLine());
-                    }
-                    Console.Clear();
-                    //вычитаем введеное число из gameNumber и проверяем условие выигрыша
-                    gameNumber -= userTry;
-                    if (gameNumber <= 0)
-                    {
-                        Console.WriteLine("Игрок {0} выиграл", playersNames[i]);
-                        gameStatus = false;
-                        break;
-                    }
+                        //Вывод информации о ходе, игровом числе и статистика
+                        Console.ForegroundColor = ConsoleColor.Blue;
+                        Console.WriteLine("Прошло раундов - " + raundsNumber);
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Сейчас загаданное число = " + gameNumber + "\n");
+                        Console.ForegroundColor = ConsoleColor.Gray;
+                        Console.WriteLine("Ход игрока " + playersNames[i]);
+                        Console.WriteLine("Введите число, которое хотите вычесть");
+                        Console.WriteLine("Оно должно быть в диапазоне от {0} до {1}", minUserTry, maxUserTry + difficultyLevel);
 
+                        //Считываем ход игрока и проверяем его на вхождение в диапазон
+                        userTry = int.Parse(Console.ReadLine());
+
+                        while ((userTry < minUserTry) || (userTry > (maxUserTry + difficultyLevel)))
+                        {
+                            Console.WriteLine("Число не входит в указанный диапазон\n" +
+                                "попробуйте еще раз");
+                            userTry = int.Parse(Console.ReadLine());
+                        }
+                        Console.Clear();
+                        //вычитаем введеное число из gameNumber и проверяем условие выигрыша
+
+                        gameNumber -= userTry;
+
+                        if (gameNumber <= 0)
+                        {
+                            winner = playersNames[i];
+                            newGameStatus = false;
+                            break;
+                        }
+                    }
+                    raundsNumber++;
                 }
-                turnsNumber++;
+                //Поздравляем победителя, желаете сыграть еще?
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("На {0} раунде победил игрок {1}\n", raundsNumber, winner);
+                Console.ForegroundColor = ConsoleColor.Gray;
+                Console.WriteLine("Еще одна игра? (yes/no)");
+                string answer = Console.ReadLine();
+                if ((answer == "no") || (answer == "No"))
+                {
+                    endGameStatus = false;
+                }
+                else
+                {
+                    raundsNumber = 0;
+                    gameNumber = randomize.Next(minGameNumber, maxGameNumber * difficultyLevel);
+                    newGameStatus = true;
+                    Console.Clear();
+                }
+
             }
             #endregion
-            Console.ReadKey();
         }
     }
 }
