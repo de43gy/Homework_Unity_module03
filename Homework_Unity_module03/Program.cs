@@ -58,7 +58,7 @@ namespace Homework_Unity_module03
             // Количество игроков - задается в начале игры
             byte numberOfPlayers;
             // Уровень сложности - меняется в начале игры
-            byte difficultyLevel = 1;
+            byte difficultyLevel;
             // Генерация псевдослучайного значения
             Random randomize = new Random();
             // Случайное число - зависит от уровня сложности
@@ -72,7 +72,11 @@ namespace Homework_Unity_module03
             // Минимальное значение userTry, не меняется
             byte minUserTry = 1;
             // Максимальное значение userTry, изменяется при выборе уровня сложности
-            byte maxUserTry = 4;
+            byte maxUserTry = 3;
+            // Статус игры, для выхода из цикла при выигрыше одного из участников
+            bool gameStatus = true;
+            // Ходов с начала игры
+            int turnsNumber = 0;
             #endregion
 
             #region Условия игры
@@ -111,7 +115,7 @@ namespace Homework_Unity_module03
             Console.WriteLine("Сложность игры:");
             Console.ForegroundColor = ConsoleColor.Gray;
             string difficultyLevelPattern = "{0} - Случайное число от {1} до {2}, вычитать можно числа от {3} до {4}";
-            Console.WriteLine(difficultyLevelPattern, 1, minGameNumber, maxGameNumber, minUserTry, maxUserTry);
+            Console.WriteLine(difficultyLevelPattern, 1, minGameNumber, maxGameNumber, minUserTry, maxUserTry + 1);
             Console.WriteLine(difficultyLevelPattern, 2, minGameNumber, maxGameNumber * 2, minUserTry, maxUserTry + 2);
             Console.WriteLine(difficultyLevelPattern, 3, minGameNumber, maxGameNumber * 3, minUserTry, maxUserTry + 3);
 
@@ -124,23 +128,23 @@ namespace Homework_Unity_module03
                 difficultyLevel = byte.Parse(Console.ReadLine());
             }
 
-            //применение уровня сложности и создание случайного числа
-            switch (difficultyLevel)
-            {
-                case 1:
-                    gameNumber = randomize.Next(minGameNumber, maxGameNumber);
-                    break;
-                case 2:
-                case 3:
-                    gameNumber = randomize.Next(minGameNumber, maxGameNumber *= difficultyLevel);
-                    maxUserTry += difficultyLevel;
-                    break;
-                default:
-                    Console.WriteLine("Вы ввели неправильный уровень сложности");
-                    break;
-            }
+            //создание случайного числа
+            gameNumber = randomize.Next(minGameNumber, maxGameNumber);
             #endregion
 
+            #region Ход игры
+            Console.Clear();
+
+            while (gameStatus)
+            {
+                //Вывод информации о ходе, игровом числе и статистика
+                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.WriteLine("Ходов с начала игры - " + turnsNumber);
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Сейчас загаданное число = " + gameNumber);
+
+            }
+            #endregion
             Console.ReadKey();
         }
     }
