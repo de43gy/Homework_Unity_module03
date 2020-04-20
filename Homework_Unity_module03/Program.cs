@@ -56,9 +56,9 @@ namespace Homework_Unity_module03
             // Содержит имена игроков
             string[] playerName;
             // Количество игроков - задается в начале игры
-            byte numberOfPlayers;
+            int numberOfPlayers;
             // Уровень сложности - меняется в начале игры
-            byte difficultyLevel;
+            int difficultyLevel;
             // Генерация псевдослучайного значения
             Random randomize = new Random();
             // Случайное число - зависит от уровня сложности
@@ -68,11 +68,11 @@ namespace Homework_Unity_module03
             // Максимальное значение случайного числа по умолчанию, изменяется при выборе уровня сложности
             int maxGameNumber = 120;
             // Вычитается из gameNumber, значения зависят от уровня сложности
-            byte userTry;
+            int userTry;
             // Минимальное значение userTry, не меняется
-            byte minUserTry = 1;
+            int minUserTry = 1;
             // Максимальное значение userTry, изменяется при выборе уровня сложности
-            byte maxUserTry = 3;
+            int maxUserTry = 3;
             // Статус игры, для выхода из цикла при выигрыше одного из участников
             bool gameStatus = true;
             // Ходов с начала игры
@@ -99,15 +99,23 @@ namespace Homework_Unity_module03
                 "Если выбран один игрок, игра будет проходить с компьютерным противником");
 
             //Ввод и проверка правильности ввода количества игроков
-            numberOfPlayers = byte.Parse(Console.ReadLine());
+            numberOfPlayers = int.Parse(Console.ReadLine());
             while ((numberOfPlayers < 1) || (numberOfPlayers > 10))
             {
                 Console.WriteLine("Количество игроков должно быть больше 0 и меньше 11\n" +
                     "Попробуйте еще раз");
-                numberOfPlayers = byte.Parse(Console.ReadLine());
+                numberOfPlayers = int.Parse(Console.ReadLine());
             }
 
-            Console.WriteLine("");
+            //Ввод имен игроков
+            playerName = new string[numberOfPlayers];
+            int playerNumber = 1;
+            for (int i = 0; i < numberOfPlayers; i++)
+            {
+                Console.WriteLine("Введите имя игрока №" + playerNumber);
+                playerNumber++;
+                playerName[i] = Console.ReadLine();
+            }
             #endregion
 
             #region Уровень сложности
@@ -120,12 +128,12 @@ namespace Homework_Unity_module03
             Console.WriteLine(difficultyLevelPattern, 3, minGameNumber, maxGameNumber * 3, minUserTry, maxUserTry + 3);
 
             //Ввод уровня сложности и проверка
-            difficultyLevel = byte.Parse(Console.ReadLine());
+            difficultyLevel = int.Parse(Console.ReadLine());
             while ((difficultyLevel < 1) || (difficultyLevel > 3))
             {
                 Console.WriteLine("Вы ввели неправильный уровень сложности\n" +
                     "Попробуйте еще раз");
-                difficultyLevel = byte.Parse(Console.ReadLine());
+                difficultyLevel = int.Parse(Console.ReadLine());
             }
 
             //создание случайного числа
@@ -142,7 +150,6 @@ namespace Homework_Unity_module03
                 Console.WriteLine("Ходов с начала игры - " + turnsNumber);
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("Сейчас загаданное число = " + gameNumber);
-
             }
             #endregion
             Console.ReadKey();
