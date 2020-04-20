@@ -53,16 +53,26 @@ namespace Homework_Unity_module03
             #endregion
 
             #region Ключевые переменные
-            string[] playerName;                // Содержит имена игроков
-            byte numberOfPlayers;               // Количество игроков - задается в начале игры
-            byte difficultyLevel = 1;           // Уровень сложности - меняется в начале игры
-            Random randomize = new Random();    // Генерация псевдослучайного значения
-            int gameNumber;                     // Случайное число - зависит от уровня сложности
-            int minGameNumber = 12;             // Минимальное значение случайного числа, не меняется
-            int maxGameNumber = 120;            // Максимальное значение случайного числа по умолчанию, изменяется при выборе уровня сложности 
-            byte userTry;                       // Вычитается из gameNumber, значения зависят от уровня сложности
-            byte minUserTry = 1;                // Минимальное значение userTry, не меняется
-            byte maxUserTry = 4;                // Максимальное значение userTry, изменяется при выборе уровня сложности
+            // Содержит имена игроков
+            string[] playerName;
+            // Количество игроков - задается в начале игры
+            byte numberOfPlayers;
+            // Уровень сложности - меняется в начале игры
+            byte difficultyLevel = 1;
+            // Генерация псевдослучайного значения
+            Random randomize = new Random();
+            // Случайное число - зависит от уровня сложности
+            int gameNumber;
+            // Минимальное значение случайного числа, не меняется
+            int minGameNumber = 12;
+            // Максимальное значение случайного числа по умолчанию, изменяется при выборе уровня сложности
+            int maxGameNumber = 120;
+            // Вычитается из gameNumber, значения зависят от уровня сложности
+            byte userTry;
+            // Минимальное значение userTry, не меняется
+            byte minUserTry = 1;
+            // Максимальное значение userTry, изменяется при выборе уровня сложности
+            byte maxUserTry = 4;
             #endregion
 
             #region Условия игры
@@ -132,11 +142,6 @@ namespace Homework_Unity_module03
             #endregion
 
             Console.ReadKey();
-
-
-
-
-
         }
     }
 }
