@@ -43,18 +43,53 @@ namespace Homework_Unity_module03
             // Игра поздравляет победителя, предлагая сыграть реванш
             // 
             // * Бонус:
-            // Подумать над возможностью реализации разных уровней сложности.
             // В качестве уровней сложности может выступать настраиваемое, в начале игры,
-            // значение userTry, изменение диапазона gameNumber, или указание большего количества игроков (3, 4, 5...)
+            // значение userTry, изменение диапазона gameNumber, или указание большего количества игроков (3, 4, 5...)Подумать над возможностью реализации разных уровней сложности.
+            // 
 
             // *** Сложный бонус
             // Подумать над возможностью реализации однопользовательской игры
             // т е игрок должен играть с компьютером
             #endregion
 
-            string player1, player2; // имена игроков 1, 2, 3 и 4
-            int gameNumber; // случайное число
-            byte userTry; // число, введеное одним из игроков, может принимать значения 1, 2, 3 или 4, вычитается из gamenumber
+            string[] playerName;            // Содержит имена игроков
+            int gameNumber;                 // случайное число
+            byte userTry;                   // число, введеное одним из игроков, может принимать значения 1, 2, 3 или 4, вычитается из gamenumber
+
+            /*
+             * Начало игры:
+             * Выбор уровня сложности, ввод имен игроков
+             * gameNumber присваивается случайное число
+             */
+
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("Игра \"ОБНУЛИ МЕНЯ ПЕРВЫМ\"\n");
+
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("Правила игры:");
+            Console.ForegroundColor = ConsoleColor.Gray;
+            Console.WriteLine("Игра загадывает число и выводит его на экран.\n" +
+                "Вам нужно по череди вводить числа, которые будут вычитаться из него.\n" +
+                "Выигрывает тот, кто первый дойдет до 0\n");
+            
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("Выберете количество игроков:");
+            Console.ForegroundColor = ConsoleColor.Gray;
+            Console.WriteLine("Можно выбрать от 1 до 10\n" +
+                "Если выбран один игрок, игра будет проходить с компьютерным противником\n");
+
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("Выберете сложность игры:");
+            Console.ForegroundColor = ConsoleColor.Gray;
+            Console.WriteLine("1 - Случайное число от 12 до 120, вычитать можно числа от 1 до 4");
+            Console.WriteLine("2 - Случайное число от 12 до 240, вычитать можно числа от 1 до 6");
+            Console.WriteLine("3 - Случайное число от 12 до 480, вычитать можно числа от 1 до 8\n");
+
+
+
+
+
+            Console.ReadKey();
 
 
 
