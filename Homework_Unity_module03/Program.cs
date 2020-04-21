@@ -193,7 +193,9 @@ namespace Homework_Unity_module03
                             Console.WriteLine("Ход игрока " + playersNames[i]);
                             Console.WriteLine("Он выбрал " + userTry);
                             gameNumber -= userTry;
+                            Console.ForegroundColor = ConsoleColor.Red;
                             Console.WriteLine("Теперь заданное число равно " + gameNumber + "\n");
+                            Console.ForegroundColor = ConsoleColor.Gray;
 
                             //проверка условия выигрыша после хода ИИ
                             if (gameNumber <= 0)
