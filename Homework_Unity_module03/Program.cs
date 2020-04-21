@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 
 namespace Homework_Unity_module03
 {
@@ -51,6 +52,9 @@ namespace Homework_Unity_module03
             // Подумать над возможностью реализации однопользовательской игры
             // т е игрок должен играть с компьютером
             #endregion
+
+            //Для ввода русских имен из консоли
+            //Console.InputEncoding = Encoding.Unicode;
 
             #region Ключевые переменные
             // Содержит имена игроков
