@@ -183,12 +183,18 @@ namespace Homework_Unity_module03
                         if (numberOfPlayers == 1)
                         {
                             //ход игрока ИИ
+                            if(maxUserTry + difficultyLevel <= gameNumber)
+                            {
+                                userTry = gameNumber;
+                            } else
+                            {
+                                userTry = randomize.Next(minUserTry, maxUserTry + difficultyLevel);
+                            }
                             Console.WriteLine("Ход игрока " + playersNames[i]);
-                            userTry = randomize.Next(minUserTry, maxUserTry + difficultyLevel);
                             Console.WriteLine("Он выбрал " + userTry);
                             gameNumber -= userTry;
                             Console.WriteLine("Теперь заданное число равно " + gameNumber + "\n");
-                            
+
                             //проверка условия выигрыша после хода ИИ
                             if (gameNumber <= 0)
                             {
@@ -215,6 +221,7 @@ namespace Homework_Unity_module03
                         }
 
                         Console.Clear();
+
                         //вычитаем введеное число из gameNumber и проверяем условие выигрыша
 
                         gameNumber -= userTry;
@@ -233,7 +240,9 @@ namespace Homework_Unity_module03
                 Console.WriteLine("На {0} раунде победил игрок {1}\n", raundsNumber, winner);
                 Console.ForegroundColor = ConsoleColor.Gray;
                 Console.WriteLine("Еще одна игра? (yes/no)");
+
                 string answer = Console.ReadLine();
+
                 if ((answer == "no") || (answer == "No") || (answer == "n"))
                 {
                     endGameStatus = false;
@@ -245,7 +254,6 @@ namespace Homework_Unity_module03
                     newGameStatus = true;
                     Console.Clear();
                 }
-
             }
             #endregion
         }
