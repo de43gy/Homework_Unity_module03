@@ -183,7 +183,7 @@ namespace Homework_Unity_module03
                         if (numberOfPlayers == 1)
                         {
                             //ход игрока ИИ
-                            if(maxUserTry + difficultyLevel <= gameNumber)
+                            if(maxUserTry + difficultyLevel >= gameNumber)
                             {
                                 userTry = gameNumber;
                             } else
