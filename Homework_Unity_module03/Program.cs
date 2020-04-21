@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Text;
 
 namespace Homework_Unity_module03
 {
@@ -110,20 +109,35 @@ namespace Homework_Unity_module03
             numberOfPlayers = int.Parse(Console.ReadLine());
             while ((numberOfPlayers < 1) || (numberOfPlayers > 10))
             {
-                Console.WriteLine("Количество игроков должно быть больше 0 и меньше 11\n" +
+                Console.WriteLine("Количество игроков должно быть в диапазоне от 1 до 10\n" +
                     "Попробуйте еще раз");
                 numberOfPlayers = int.Parse(Console.ReadLine());
             }
 
             //Ввод имен игроков
-            playersNames = new string[numberOfPlayers];
-            int playerNumber = 1;
-            for (int i = 0; i < numberOfPlayers; i++)
+            //если игра с компьютерным противником
+            if (numberOfPlayers == 1)
             {
-                Console.WriteLine("Введите имя игрока №" + playerNumber);
-                playerNumber++;
-                playersNames[i] = Console.ReadLine();
+                playersNames = new string[2];
+                Console.WriteLine("Вы будете играть с компьютерным противником\n" +
+                    "введите его имя:");
+                playersNames[0] = Console.ReadLine();
+                Console.WriteLine("Теперь введите свое имя");
+                playersNames[1] = Console.ReadLine();
             }
+            else
+            {
+                // и если игра с живими игроками
+                playersNames = new string[numberOfPlayers];
+                int playerNumber = 1;
+                for (int i = 0; i < numberOfPlayers; i++)
+                {
+                    Console.WriteLine("Введите имя игрока №" + playerNumber);
+                    playerNumber++;
+                    playersNames[i] = Console.ReadLine();
+                }
+            }
+
             #endregion
 
             #region Уровень сложности
