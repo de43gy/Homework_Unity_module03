@@ -107,7 +107,7 @@ namespace Homework_Unity_module03
 
             //Ввод и проверка правильности ввода количества игроков
             numberOfPlayers = int.Parse(Console.ReadLine());
-            while ((numberOfPlayers < 1) || (numberOfPlayers > 10))
+            while (numberOfPlayers < 1 || numberOfPlayers > 10)
             {
                 Console.WriteLine("Количество игроков должно быть в диапазоне от 1 до 10\n" +
                     "Попробуйте еще раз");
@@ -151,7 +151,7 @@ namespace Homework_Unity_module03
 
             //Ввод уровня сложности и проверка
             difficultyLevel = int.Parse(Console.ReadLine());
-            while ((difficultyLevel < 1) || (difficultyLevel > 3))
+            while (difficultyLevel < 1 || difficultyLevel > 3)
             {
                 Console.WriteLine("Вы ввели неправильный уровень сложности\n" +
                     "Попробуйте еще раз");
@@ -215,7 +215,7 @@ namespace Homework_Unity_module03
                         //Считываем ход игрока и проверяем его на вхождение в диапазон
                         userTry = int.Parse(Console.ReadLine());
 
-                        while ((userTry < minUserTry) || (userTry > (maxUserTry + difficultyLevel)))
+                        while (userTry < minUserTry || userTry > (maxUserTry + difficultyLevel))
                         {
                             Console.WriteLine("Число не входит в указанный диапазон\n" +
                                 "попробуйте еще раз");
@@ -245,16 +245,23 @@ namespace Homework_Unity_module03
 
                 string answer = Console.ReadLine();
 
-                if ((answer == "no") || (answer == "No") || (answer == "n"))
+                if (answer == "no" || answer == "No" || answer == "n")
                 {
                     endGameStatus = false;
                 }
-                else
+                else if (answer == "yes" || answer == "Yes" || answer == "y")
                 {
                     raundsNumber = 0;
                     gameNumber = randomize.Next(minGameNumber, maxGameNumber * difficultyLevel);
                     newGameStatus = true;
                     Console.Clear();
+                }
+                else
+                {
+                    Console.WriteLine("Мы не поняли, что вы ввели\n" +
+                        "Игра завершена");
+                    endGameStatus = false;
+                    Console.WriteLine();
                 }
             }
             #endregion
