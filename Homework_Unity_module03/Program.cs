@@ -122,7 +122,7 @@ namespace Homework_Unity_module03
                 Console.WriteLine("Вы будете играть с компьютерным противником\n" +
                     "введите его имя:");
                 playersNames[0] = Console.ReadLine();
-                Console.WriteLine("Теперь введите свое имя");
+                Console.WriteLine("Теперь введите свое имя:");
                 playersNames[1] = Console.ReadLine();
             }
             else
@@ -132,7 +132,7 @@ namespace Homework_Unity_module03
                 int playerNumber = 1;
                 for (int i = 0; i < numberOfPlayers; i++)
                 {
-                    Console.WriteLine("Введите имя игрока №" + playerNumber);
+                    Console.WriteLine("Введите имя игрока " + playerNumber);
                     playerNumber++;
                     playersNames[i] = Console.ReadLine();
                 }
@@ -178,6 +178,28 @@ namespace Homework_Unity_module03
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("Сейчас загаданное число = " + gameNumber + "\n");
                         Console.ForegroundColor = ConsoleColor.Gray;
+
+                        //проверка на игрока-ИИ
+                        if (numberOfPlayers == 1)
+                        {
+                            //ход игрока ИИ
+                            Console.WriteLine("Ход игрока " + playersNames[i]);
+                            userTry = randomize.Next(minUserTry, maxUserTry + difficultyLevel);
+                            Console.WriteLine("Он выбрал " + userTry);
+                            gameNumber -= userTry;
+                            Console.WriteLine("Теперь заданное число равно " + gameNumber + "\n");
+                            
+                            //проверка условия выигрыша после хода ИИ
+                            if (gameNumber <= 0)
+                            {
+                                winner = playersNames[i];
+                                newGameStatus = false;
+                                break;
+                            }
+                            i++;
+                        }
+
+                        //ход игрока - человека или кота
                         Console.WriteLine("Ход игрока " + playersNames[i]);
                         Console.WriteLine("Введите число, которое хотите вычесть");
                         Console.WriteLine("Оно должно быть в диапазоне от {0} до {1}", minUserTry, maxUserTry + difficultyLevel);
@@ -191,6 +213,7 @@ namespace Homework_Unity_module03
                                 "попробуйте еще раз");
                             userTry = int.Parse(Console.ReadLine());
                         }
+
                         Console.Clear();
                         //вычитаем введеное число из gameNumber и проверяем условие выигрыша
 
@@ -211,7 +234,7 @@ namespace Homework_Unity_module03
                 Console.ForegroundColor = ConsoleColor.Gray;
                 Console.WriteLine("Еще одна игра? (yes/no)");
                 string answer = Console.ReadLine();
-                if ((answer == "no") || (answer == "No"))
+                if ((answer == "no") || (answer == "No") || (answer == "n"))
                 {
                     endGameStatus = false;
                 }
